@@ -1,0 +1,23 @@
+name: Backend Docker Build Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. 소스코드 내려받기 (Checkout)
+        uses: actions/checkout@v4
+
+      - name: 2. 백엔드 Docker 이미지 빌드
+        # backend 폴더 안에 있는 Dockerfile을 사용해 'my-backend:latest'라는 이름으로 빌드합니다.
+        run: docker build -t my-backend:latest ./backend
+        
+      - name: 3. 생성된 Docker 이미지 목록 확인
+        # 도커 이미지가 실제로 정상 생성되었는지 리스트를 출력해 눈으로 확인합니다.
+        run: docker images
