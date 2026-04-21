@@ -2,7 +2,7 @@ name: Dockerfile-less Spring Boot Build
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   build:
