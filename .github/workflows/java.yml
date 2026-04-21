@@ -1,0 +1,29 @@
+name: Java Multi Step Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  java-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Java 17 설치
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: java -version 출력
+        run: java -version
+
+      - name: Gradle wrapper 버전 출력
+        run: ./gradlew --version
+
+      - name: 커밋 SHA 출력
+        run: |
+          echo "커밋 SHA: ${{ github.sha }}"
