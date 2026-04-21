@@ -3,7 +3,7 @@ name: Java Multi Step Workflow
 on:
   push:
     branches:
-      - main
+      - feature/docs
 
 jobs:
   java-workflow:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Gradle wrapper 버전 출력
         run: ./gradlew --version
-        working-directory: backend
+        
 
       - name: 커밋 SHA 출력
         run: |

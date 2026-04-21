@@ -1,4 +1,4 @@
-name: My First Workflow
+name: Needs Job Order Example
 
 on:
   push:
@@ -6,13 +6,22 @@ on:
       - main
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: 안녕하세요 출력
-        run: echo "안녕하세요"
-      - name: 현재 날짜와 시간 출력
-        run: date
-      - name: 커밋한 사람 이름 출력
-        run: |
-          echo "커밋한 사람: ${{ github.actor }}"
+      - name: 테스트 실행
+        run: echo "테스트 실행"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: 빌드 실행
+        run: echo "빌드 실행"
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 배포 완료 알림
+        run: echo "배포 완료 알림"
