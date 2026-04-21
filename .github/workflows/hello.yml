@@ -1,21 +1,18 @@
-name: Step Control
+name: My First Workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  test:
+  hello:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 성공 step
-        run: echo "성공"
-
-      - name: 실패 step
-        run: exit 1
-
-      - name: 실패 후 이 step은?
-        run: echo "이건 실행될까?"
-
-      - name: 항상 실행
-        if: always()
-        run: echo "always()는 항상 실행됨"
+      - name: 안녕하세요 출력
+        run: echo "안녕하세요"
+      - name: 현재 날짜와 시간 출력
+        run: date
+      - name: 커밋한 사람 이름 출력
+        run: |
+          echo "커밋한 사람: ${{ github.actor }}"
