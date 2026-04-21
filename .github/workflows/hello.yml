@@ -1,25 +1,21 @@
-name: Java Build
+name: Step Control
 
-on:
-  push:
-    branches: [main]
+on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 코드 체크아웃
-        uses: actions/checkout@v4
+      - name: 성공 step
+        run: echo "성공"
 
-      - name: Java 17 설치
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+      - name: 실패 step
+        run: exit 1
 
-      - name: Java 버전 확인
-        run: java -version
+      - name: 실패 후 이 step은?
+        run: echo "이건 실행될까?"
 
-      - name: 저장소 내용 확인
-        run: ls -la
+      - name: 항상 실행
+        if: always()
+        run: echo "always()는 항상 실행됨"
